@@ -12,8 +12,13 @@ export default function App()
         const program = brainfuck_ref.current.value.trim();
         var memory_limit = memorylimit_ref.current.value.trim();
 
-        if( memory_limit.length == 0 || isNaN( memory_limit ) ) 
+        memory_limit = parseInt( memory_limit );
+
+        if( isNaN( memory_limit ) || memory_limit < 100 ) 
+        {
+            memorylimit_ref.current.value = 30000;
             memory_limit = 30000;
+        }
 
         const output = compile( program , memory_limit );
         plaintext_ref.current.value = "";
