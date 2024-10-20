@@ -30,7 +30,7 @@ export default function App()
             <h1>Welcome to BrainfuckJS</h1>
 
             <section id="welcome">
-                <p>A <a href="https://es.wikipedia.org/wiki/Brainfuck">Brainfuck</a> interpreter</p>
+                <p>A <a  target="_blank" href="https://es.wikipedia.org/wiki/Brainfuck">Brainfuck</a> interpreter</p>
             </section>
 
             <hr />
@@ -68,9 +68,9 @@ export default function App()
             </section>
 
             <footer>
-                <p>Check project on <a href="https://github.com/SaidSuyv/brainfuck-js">https://github.com/SaidSuyv/brainfuck-js</a></p>
+                <p>Check project on <a target="_blank" href="https://github.com/SaidSuyv/brainfuck-js">https://github.com/SaidSuyv/brainfuck-js</a></p>
             </footer>
-            
+
         </main>
     );
 }
