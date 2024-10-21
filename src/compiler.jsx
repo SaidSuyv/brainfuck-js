@@ -66,12 +66,13 @@ const input = () => {
 };
 
 const output = () => message += String.fromCharCode( memory[pointer] );
+// const output = () => message += memory[ pointer ].toString();
 
 const init_values = ( limit ) => {
     memory = Array( limit ).fill(0);
     pointer = 0,
-    tcommand = 0;
-    tpointer = null;
+    tcommand = [];
+    tpointer = [];
     message = "";
 }
 
@@ -84,38 +85,53 @@ export const compile = ( program , limit ) => {
         if (!valid_instructions.includes(program[i])) continue;
 
         switch (program[i]) {
+
             case "+":
                 add();
                 break;
+
             case "-":
                 dec();
                 break;
+
             case ",":
                 input();
                 break;
+
             case ".":
                 output();
                 break;
+
             case ">":
                 nxt();
                 break;
+
             case "<":
                 bck();
                 break;
+
             case "[":
-                tpointer = pointer;
-                tcommand = i;
+                tpointer.push( pointer );
+                tcommand.push( i );
                 break;
+
             case "]":
-                if (memory[tpointer] == 0) {
-                    tpointer = null;
-                    tcommand = i;
-                } else {
-                    i = tcommand;
-                }
+                if( tpointer.length > 0 )
+                {
+                    let tp_ind = tpointer.length - 1;
+                    if( memory[ tpointer[ tp_ind ] ] == 0 )
+                    {
+                        tpointer.pop();
+                        tcommand.pop();
+                    }else
+                    {
+                        i = tcommand[ tcommand.length - 1 ];
+                    }
+                }else continue;
                 break;
         }
     }
+    console.log(memory,tpointer);
 
     return message;
 };
